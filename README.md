@@ -12,7 +12,7 @@
 
 > Collection: races > Document is auto created / populated\
 > Collection: tracks > Track > Field is auto auto created / populated\
-> Collection: drivers > Driver > Field is auto auto created / populated\
+> Collection: drivers > Driver > Field is auto auto created / populated
 
 **Add the Firebase Config file with your config settings:**
 
