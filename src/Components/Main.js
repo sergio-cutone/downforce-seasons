@@ -7,15 +7,15 @@ import {
   orderBy,
   limit,
 } from "firebase/firestore"
-import { BrowserRouter as Router } from "react-router-dom"
 import SeasonTable from "./SeasonTable"
+import { fbRaces } from "../services/fb-collection"
 
 const Main = ({ db }) => {
   const [lastRaceList, setLastRaceList] = useState([])
 
   const fetchLastRace = async () => {
     const openSeasonsSnapshot = []
-    const seasonsRef = collection(db, "races")
+    const seasonsRef = collection(db, fbRaces)
     const seasonsQuery = query(
       seasonsRef,
       where("complete", "==", true),
@@ -42,9 +42,8 @@ const Main = ({ db }) => {
 
   return (
     <div>
-      <Router />
-      {!lastRaceList.length && <div>There are no Open Seasons!</div>}
-      {lastRaceList.length && (
+      {!lastRaceList.length && <div>There are no Completed Seasons!</div>}
+      {lastRaceList.length > 0 && (
         <>
           <div className="bg-white">
             {lastRaceList.map((openSeason, openSeasonIndex) => (

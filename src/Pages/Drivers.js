@@ -3,8 +3,9 @@ import { doc, updateDoc, arrayRemove, arrayUnion } from "firebase/firestore"
 import { XIcon } from "@heroicons/react/solid"
 import fetchDrivers from "../helpers/fb-Drivers"
 import { FilterChars, InputVerification } from "../helpers/core"
+import { fbDrivers } from "../services/fb-collection"
 
-const Drivers = ({ db }) => {
+const Drivers = ({ db, showList = true, addCallBack = () => {} }) => {
   const [drivers, setDrivers] = useState([])
   const [isAddDriver, setIsAddDriver] = useState(false)
   const [newDriver, setNewDriver] = useState("")
@@ -19,7 +20,7 @@ const Drivers = ({ db }) => {
   }
 
   const handleDeleteDriver = async deleteDriver => {
-    await updateDoc(doc(db, "drivers", "driver"), {
+    await updateDoc(doc(db, fbDrivers, "driver"), {
       name: arrayRemove(deleteDriver),
     })
     fetchData()
@@ -33,9 +34,10 @@ const Drivers = ({ db }) => {
 
   const addDriver = async () => {
     if (newDriver) {
-      await updateDoc(doc(db, "drivers", "driver"), {
+      await updateDoc(doc(db, fbDrivers, "driver"), {
         name: arrayUnion(newDriver.trim()),
       })
+      addCallBack()
       fetchData()
       resetForm()
     }
@@ -90,6 +92,7 @@ const Drivers = ({ db }) => {
         </div>
       )}
       {drivers.length > 0 ? (
+        showList &&
         drivers.sort().map((driver, driverIndex) => (
           <div
             className="grid grid-cols-4 border-2 border-black bg-white font-bold relative"
@@ -105,7 +108,7 @@ const Drivers = ({ db }) => {
           </div>
         ))
       ) : (
-        <div>No saved drivers exist! Add a driver.</div>
+        <div>Need at least 2 drivers! Add a driver.</div>
       )}
       {isAddDriver && (
         <>

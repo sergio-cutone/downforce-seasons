@@ -1,2 +1,5 @@
-const fbCollection = "season-demo"
-module.exports = fbCollection
+const fbRaces = "races"
+const fbTracks = "tracks"
+const fbDrivers = "drivers"
+
+export { fbRaces, fbTracks, fbDrivers }

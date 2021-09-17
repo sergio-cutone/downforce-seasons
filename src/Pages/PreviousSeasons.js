@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { getDocs, collection, query, where } from "firebase/firestore"
 import SeasonTable from "../Components/SeasonTable"
+import { fbRaces } from "../services/fb-collection"
 
 const PreviousSeasons = ({ db }) => {
   const [previousSeasonsList, setPreviousSeasonsList] = useState([])
 
   const fetchPreviousSeasons = async () => {
     const previousSeasonsSnapshot = []
-    const seasonsRef = collection(db, "races")
+    const seasonsRef = collection(db, fbRaces)
     const seasonsQuery = query(seasonsRef, where("complete", "==", true))
     const querySeasonsSnapshot = await getDocs(seasonsQuery)
     querySeasonsSnapshot.forEach(doc => {

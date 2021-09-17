@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import fetchDrivers from "../helpers/fb-Drivers"
-import { Link } from "react-router-dom"
+import { BrowserRouter as Router, Link } from "react-router-dom"
 
 const SelectDrivers = ({ numberOfDrivers, handleEnterPlayerNames }) => {
   const [drivers, setDrivers] = useState([])
@@ -14,7 +14,6 @@ const SelectDrivers = ({ numberOfDrivers, handleEnterPlayerNames }) => {
   return (
     <div>
       <h1 className="font-bold text-2xl block mb-2">Select Drivers</h1>
-
       {drivers.length ? (
         numberOfDrivers.map((driverNumber, driverNumberIndex) => {
           return (
@@ -38,9 +37,11 @@ const SelectDrivers = ({ numberOfDrivers, handleEnterPlayerNames }) => {
         <div className="mb-3">
           There are no saved Drivers.{" "}
           <div>
-            <Link to="/drivers" className="button-grey">
-              Add Drivers
-            </Link>
+            <Router basename="/downforce">
+              <Link to="/drivers" className="button-grey">
+                Add Drivers
+              </Link>
+            </Router>
           </div>
         </div>
       )}

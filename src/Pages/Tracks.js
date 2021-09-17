@@ -3,8 +3,9 @@ import { doc, updateDoc, arrayRemove, arrayUnion } from "firebase/firestore"
 import { XIcon } from "@heroicons/react/solid"
 import fetchTracks from "../helpers/fb-Tracks"
 import { FilterChars, InputVerification } from "../helpers/core"
+import { fbTracks } from "../services/fb-collection"
 
-const Tracks = ({ db }) => {
+const Tracks = ({ db, showList = true, addCallBack = () => {} }) => {
   const [tracks, setTracks] = useState([])
   const [isAddTrack, setIsAddTrack] = useState(false)
   const [newTrack, setNewTrack] = useState("")
@@ -19,7 +20,7 @@ const Tracks = ({ db }) => {
   }
 
   const handleDeleteTrack = async deleteTrack => {
-    await updateDoc(doc(db, "tracks", "track"), {
+    await updateDoc(doc(db, fbTracks, "track"), {
       name: arrayRemove(deleteTrack),
     })
     fetchData()
@@ -33,9 +34,10 @@ const Tracks = ({ db }) => {
 
   const addTrack = async () => {
     if (newTrack) {
-      await updateDoc(doc(db, "tracks", "track"), {
+      await updateDoc(doc(db, fbTracks, "track"), {
         name: arrayUnion(newTrack.trim()),
       })
+      addCallBack()
       fetchData()
       resetForm()
     }
@@ -90,6 +92,7 @@ const Tracks = ({ db }) => {
         </div>
       )}
       {tracks.length > 0 ? (
+        showList &&
         tracks.sort().map((track, trackIndex) => (
           <div
             className="grid grid-cols-4 border-2 border-black bg-white font-bold relative"

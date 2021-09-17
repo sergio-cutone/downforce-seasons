@@ -126,4 +126,17 @@ const gameReducer = (state, action) => {
   }
 }
 
-export default gameReducer
+export {
+  gameReducer,
+  DRIVERS,
+  DRIVER_NAME,
+  NUMBER_OF_RACES,
+  RACE_SCORING,
+  RACE_TIE,
+  RACE_RESULTS,
+  RACE_POINTS,
+  RACE_FINISHED,
+  UPDATE_DOC_ID,
+  TRACK,
+  OPEN_SEASON,
+}

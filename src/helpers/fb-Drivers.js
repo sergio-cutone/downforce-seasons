@@ -1,5 +1,6 @@
 import { doc, getDoc } from "firebase/firestore"
-import firestore from "../Services/firestore"
+import firestore from "../services/firestore"
+import { fbDrivers } from "../services/fb-collection"
 
 var db = firestore.firestore()
 db.settings({
@@ -7,9 +8,9 @@ db.settings({
 })
 
 const fetchDrivers = async () => {
-  const docRef = doc(db, "drivers", "driver")
+  const docRef = doc(db, fbDrivers, "driver")
   const docSnap = await getDoc(docRef)
-  return docSnap.data().name
+  return docSnap.data().name ? docSnap.data().name : []
 }
 
 export default fetchDrivers

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react"
 import { getDocs, collection, query, where } from "firebase/firestore"
 import { InformationCircleIcon } from "@heroicons/react/solid"
 import { BrowserRouter as Router, Link } from "react-router-dom"
+import { fbRaces } from "../services/fb-collection"
 
 const OpenSeasons = ({ db }) => {
   const [openSeasonsList, setOpenSeasonsList] = useState([])
 
   const fetchOpenSeasons = async () => {
     const openSeasonsSnapshot = []
-    const seasonsRef = collection(db, "races")
+    const seasonsRef = collection(db, fbRaces)
     const seasonsQuery = query(seasonsRef, where("complete", "==", false))
     const querySeasonsSnapshot = await getDocs(seasonsQuery)
     querySeasonsSnapshot.forEach(doc => {
