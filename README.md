@@ -39,7 +39,7 @@
 
 > const fbRaces = "<-- NAME OF RACES COLLECTION (races)-->"\
 > const fbTracks = "<-- NAME OF COLLECTION (tracks)-->"\
-> const fbDrivers = "<-- NAME OF COLLECTION (drivers)-->"\
+> const fbDrivers = "<-- NAME OF COLLECTION (drivers)-->"
 
 export { fbRaces, fbTracks, fbDrivers }
 
