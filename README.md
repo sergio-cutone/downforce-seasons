@@ -10,9 +10,9 @@
 
 **Firebase Database Structure Example**
 
-> Collection: races > Document is auto created / populated
-> Collection: tracks > Track > Field is auto auto created / populated
-> Collection: drivers > Driver > Field is auto auto created / populated
+> Collection: races > Document is auto created / populated\
+> Collection: tracks > Track > Field is auto auto created / populated\
+> Collection: drivers > Driver > Field is auto auto created / populated\
 
 **Add the Firebase Config file with your config settings:**
 
@@ -37,9 +37,9 @@
 
 **Content**
 
-> const fbRaces = "<-- NAME OF RACES COLLECTION (races)-->"
-> const fbTracks = "<-- NAME OF COLLECTION (tracks)-->"
-> const fbDrivers = "<-- NAME OF COLLECTION (drivers)-->"
+> const fbRaces = "<-- NAME OF RACES COLLECTION (races)-->"\
+> const fbTracks = "<-- NAME OF COLLECTION (tracks)-->"\
+> const fbDrivers = "<-- NAME OF COLLECTION (drivers)-->"\
 
 export { fbRaces, fbTracks, fbDrivers }
 
