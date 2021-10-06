@@ -1,12 +1,24 @@
-import React from "react"
+import React, { useState } from "react"
 
 const FinishingPoints = ({
   numberOfDrivers,
   handleSetFinishingPoints,
   handleSetRaceTie,
 }) => {
+  const [isF1Points, setIsF1Points] = useState(false)
+  const [inputPoints, setInputPoints] = useState(
+    new Array(parseFloat(numberOfDrivers)).fill(0)
+  )
   const pointsForDrivers = new Array(parseFloat(numberOfDrivers)).fill(0)
   const places = ["1st", "2nd", "3rd", "4th", "5th", "6th"]
+  const f1points = [25, 18, 15, 12, 10, 8]
+
+  const onHandleSetFinishingPoints = (e, pointForDriverIndex) => {
+    handleSetFinishingPoints(e, pointForDriverIndex)
+    const newInput = [...inputPoints]
+    newInput[pointForDriverIndex] = e.target.value
+    setInputPoints(newInput)
+  }
   return (
     <div>
       <h1 className="font-bold text-2xl block mb-2">Finishing Points</h1>
@@ -15,12 +27,26 @@ const FinishingPoints = ({
           placeholder={`${places[pointForDriverIndex]} Place`}
           type="number"
           className="p-2 w-full border-2 border-black mb-2 text-center"
-          onChange={e => handleSetFinishingPoints(e, pointForDriverIndex)}
+          onChange={e => onHandleSetFinishingPoints(e, pointForDriverIndex)}
           maxLength="4"
           min="0"
           key={`point-${pointForDriverIndex}`}
+          value={
+            isF1Points
+              ? f1points[pointForDriverIndex]
+              : inputPoints[pointForDriverIndex]
+          }
         />
       ))}
+      <button
+        className="button-grey mb-3"
+        onClick={() => {
+          setIsF1Points(!isF1Points)
+          setInputPoints(new Array(parseFloat(numberOfDrivers)).fill(0))
+        }}
+      >
+        Use F1 Point Structure
+      </button>
       <h1 className="font-bold text-2xl block mb-2">Tie Rule</h1>
       <div className="mb-5">
         As per the FIA: If two or more drivers tie for a position, points are

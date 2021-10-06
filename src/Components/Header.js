@@ -20,7 +20,7 @@ const Header = () => {
           <li>
             <Link
               to="/"
-              className="p-2 block border hover:bg-black hover:text-blue-900 hover:bg-white"
+              className="p-3 block border hover:bg-black hover:text-blue-900 hover:bg-white"
               onClick={() => setIsMenu(!isMenu)}
             >
               Home
@@ -29,7 +29,7 @@ const Header = () => {
           <li>
             <Link
               to="/new-season"
-              className="p-2 block border hover:bg-black hover:text-blue-900 hover:bg-white"
+              className="p-3 block border hover:bg-black hover:text-blue-900 hover:bg-white"
               onClick={() => setIsMenu(!isMenu)}
             >
               New Season
@@ -38,7 +38,7 @@ const Header = () => {
           <li>
             <Link
               to="/previous-seasons"
-              className="p-2 block border hover:bg-black hover:text-blue-900 hover:bg-white"
+              className="p-3 block border hover:bg-black hover:text-blue-900 hover:bg-white"
               onClick={() => setIsMenu(!isMenu)}
             >
               Previous Seasons
@@ -47,7 +47,7 @@ const Header = () => {
           <li>
             <Link
               to="/open-seasons"
-              className="p-2 block border hover:bg-black hover:text-blue-900 hover:bg-white"
+              className="p-3 block border hover:bg-black hover:text-blue-900 hover:bg-white"
               onClick={() => setIsMenu(!isMenu)}
             >
               Open Seasons
@@ -56,7 +56,7 @@ const Header = () => {
           <li>
             <Link
               to="/drivers"
-              className="p-2 block border hover:bg-black hover:text-blue-900 hover:bg-white"
+              className="p-3 block border hover:bg-black hover:text-blue-900 hover:bg-white"
               onClick={() => setIsMenu(!isMenu)}
             >
               Drivers
@@ -65,7 +65,7 @@ const Header = () => {
           <li>
             <Link
               to="/tracks"
-              className="p-2 block border hover:bg-black hover:text-blue-900 hover:bg-white"
+              className="p-3 block border hover:bg-black hover:text-blue-900 hover:bg-white"
               onClick={() => setIsMenu(!isMenu)}
             >
               Tracks
