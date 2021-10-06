@@ -7,17 +7,26 @@ const FinishingPoints = ({
 }) => {
   const [isF1Points, setIsF1Points] = useState(false)
   const [inputPoints, setInputPoints] = useState(
-    new Array(parseFloat(numberOfDrivers)).fill(0)
+    new Array(parseFloat(numberOfDrivers)).fill("")
   )
   const pointsForDrivers = new Array(parseFloat(numberOfDrivers)).fill(0)
   const places = ["1st", "2nd", "3rd", "4th", "5th", "6th"]
   const f1points = [25, 18, 15, 12, 10, 8]
 
-  const onHandleSetFinishingPoints = (e, pointForDriverIndex) => {
-    handleSetFinishingPoints(e, pointForDriverIndex)
+  const onSetFinishingPoints = (e, pointForDriverIndex) => {
+    handleSetFinishingPoints(e.target.value, pointForDriverIndex)
     const newInput = [...inputPoints]
     newInput[pointForDriverIndex] = e.target.value
     setInputPoints(newInput)
+  }
+
+  const handleF1PointsButton = () => {
+    if (isF1Points)
+      setInputPoints(new Array(parseFloat(numberOfDrivers)).fill(""))
+    for (let i = 0; i < pointsForDrivers.length; i++) {
+      handleSetFinishingPoints(!isF1Points ? f1points[i] : "", i)
+    }
+    setIsF1Points(!isF1Points)
   }
   return (
     <div>
@@ -27,7 +36,7 @@ const FinishingPoints = ({
           placeholder={`${places[pointForDriverIndex]} Place`}
           type="number"
           className="p-2 w-full border-2 border-black mb-2 text-center"
-          onChange={e => onHandleSetFinishingPoints(e, pointForDriverIndex)}
+          onChange={e => onSetFinishingPoints(e, pointForDriverIndex)}
           maxLength="4"
           min="0"
           key={`point-${pointForDriverIndex}`}
@@ -38,13 +47,7 @@ const FinishingPoints = ({
           }
         />
       ))}
-      <button
-        className="button-grey mb-3"
-        onClick={() => {
-          setIsF1Points(!isF1Points)
-          setInputPoints(new Array(parseFloat(numberOfDrivers)).fill(0))
-        }}
-      >
+      <button className="button-yellow mb-3" onClick={handleF1PointsButton}>
         Use F1 Point Structure
       </button>
       <h1 className="font-bold text-2xl block mb-2">Tie Rule</h1>

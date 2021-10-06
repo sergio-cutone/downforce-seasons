@@ -185,11 +185,9 @@ const NewSeason = ({ db, firebaseDoc }) => {
 
   const handleSetFinishingPoints = (racePoints, index) => {
     /* eslint-disable-next-line */
-    const { name, value: newValue, type } = racePoints.target
-    const value = type === "number" ? +newValue : newValue
     dispatch({
       type: RACE_SCORING,
-      payload: { racePoints: value, index: index },
+      payload: { racePoints: racePoints, index: index },
     })
   }
 
